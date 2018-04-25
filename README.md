@@ -1,4 +1,4 @@
-# 在执行过“Prerequisites.doc”之后进行以下操作：
+# 在执行过基础环境搭建之后进行以下操作：
 
 1.cnpm install -g composer-cli@0.16.0
 
