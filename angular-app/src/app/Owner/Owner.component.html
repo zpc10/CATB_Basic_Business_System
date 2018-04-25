@@ -1,0 +1,203 @@
+
+<div class="modal fade" id="addOwnerModal" tabindex="-1" role="dialog" aria-labelledby="addOwnerModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addOwnerModalLabel">Add Owner</h4>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+            <div class="form-group text-left">
+              <label for="ownerID">Owner ID</label>
+                <input formControlName="ownerID" type="text" class="form-control">
+                </div>      
+            <div class="form-group text-left">
+              <label for="firstName">First Name</label>  
+                <input formControlName="firstName" type="text" class="form-control">          
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="lastName">Last Name</label>  
+                <input formControlName="lastName" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="coinsValue">Coins Balance</label>  
+                <input formControlName="coinsValue" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="resourceValue">Resource Value (meter reading)</label>  
+                <input formControlName="resourceValue" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="resourceUnits">Resource Units</label>  
+              
+              <div>
+              <select name="resourceUnits" formControlName="resourceUnits">
+                <option value="kwh">kWh</option>                
+              </select>
+              </div>      
+            </div>
+
+            <div class="form-group text-left">
+              <label for="cashValue">Cash Value</label>  
+                <input formControlName="cashValue" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="cashCurrency">Cash Currency</label>  
+              
+              <div>
+              <select name="cashCurrency" formControlName="cashCurrency">
+                <option value="USD">USD</option>                
+              </select>
+              </div>        
+            </div>
+
+                
+        </div>
+        <div class="modal-footer">
+          <button (click)="addOwner(myForm);" type="submit" class="btn btn-success" data-dismiss="modal">Submit</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateOwnerModal" tabindex="-1" role="dialog" aria-labelledby="updateOwnerModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="updateOwnerModalLabel">Update Asset</h4>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+            <div class="form-group text-left">
+              <label for="ownerID">ID</label>
+                <input [ngModel]="ownerID"formControlName="ownerID" type="text" class="form-control">            
+            </div>          
+            <div class="form-group text-left">
+              <label for="firstName">First Name</label>
+                <input [ngModel]="firstName"formControlName="firstName" type="text" class="form-control">              
+            </div>          
+            <div class="form-group text-left">
+              <label for="lastName">Last Name</label>
+                  <textarea [ngModel]="lastName" formControlName="lastName" class="form-control" rows="3"></textarea>
+            </div>
+              
+        </div>
+        <div class="modal-footer">
+          <button (click)="updateOwner(myForm)" type="submit" class="btn btn-success" data-dismiss="modal">Submit</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="deleteOwnerModal" tabindex="-1" role="dialog" aria-labelledby="deleteOwnerModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="deleteOwnerModalLabel">Delete Asset</h4>
+      </div>
+      <form [formGroup]="myForm" (ngSubmit)="deleteOwner()">
+        <div class="modal-body">
+          Are you sure you want to delete this asset?
+        </div>
+        <div class="modal-footer">
+          <button (click)="deleteOwner()" type="submit" class="btn btn-danger" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container">
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+		<strong>Error:</strong> {{errorMessage}}
+	</div>
+  <div class="row">
+   
+      <h1 class="heading">Owners </h1>
+  </div>
+
+ <div class="row">
+    <div class="col-md-12 text-right">
+      <button (click)="resetForm()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOwnerModal">Add Owner</button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-responsive table-hover">
+        <thead class="thead">
+          <tr class="thead-cols">
+            
+                <th class="bc">ID</th>
+            
+                <th class="bc">First Name</th>
+            
+                <th class="bc">Last Name</th>  
+
+                <th class="bc">Coins Balance</th>  
+
+                <th class="bc">Resource Value</th>
+
+                <th class="bc">Resource Units</th>
+
+                <th class="bc">Cash Balance</th>
+
+                <th class="bc">Cash Currency</th>
+
+                <th class="bc">Actions</th>       
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let owner of allOwners">
+          
+                <td>{{owner.ownerID}}</td>
+            
+                <td>{{owner.firstName}}</td>
+            
+                <td>{{owner.lastName}}</td>
+
+                <td>{{owner.coinsValue}}</td>
+
+                <td>{{owner.resourceValue}}</td>
+
+                <td>{{owner.resourceUnits}}</td>
+
+                <td>{{owner.cashValue}}</td>
+
+                <td>{{owner.cashCurrency}}</td>
+           
+            <td>
+
+              <button (click)="getForm(owner.ownerID);" type="button" class="btn btn-success" data-toggle="modal" data-target="#updateOwnerModal">Update</button>
+
+              <button (click)="setId(owner.ownerID);" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteOwnerModal">Delete</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,78 @@
+/**
+ * Decentalized resource network
+ */
+namespace org.decentralized.resource.network
+
+participant Owner identified by ownerID {
+    o String ownerID
+    o String firstName
+    o String lastName
+    --> Coins coins
+    --> Cash cash
+    --> Resource resource
+}
+
+participant Bank identified by bankID {
+    o String bankID
+    o String name
+    --> Coins coins
+    --> Cash cash
+}
+
+participant Company identified by companyID {
+    o String companyID
+    o String name
+    --> Coins coins
+    --> Resource resource
+}
+
+
+enum OwnerEntity {
+  o Owner
+  o Bank
+  o Company
+}
+
+
+asset Coins identified by coinsID {
+    o String coinsID
+    o Double value
+    o String ownerID
+    o OwnerEntity ownerEntity
+    
+}
+
+asset Resource identified by resourceID {
+    o String resourceID
+    o String units
+    o Double value
+    o String ownerID
+    o OwnerEntity ownerEntity
+} 
+
+asset Cash identified by cashID {
+    o String cashID
+    o String currency
+    o Double value
+    o String ownerID
+    o OwnerEntity ownerEntity
+} 
+
+
+transaction ResourceToCoins {
+    o Double resourceRate
+    o Double resourceValue       
+    --> Coins coinsInc
+    --> Coins coinsDec
+    --> Resource resourceInc
+    --> Resource resourceDec
+}
+
+transaction CashToCoins {
+    o Double cashRate       
+    o Double cashValue    
+    --> Coins coinsInc
+    --> Coins coinsDec
+    --> Cash cashInc
+    --> Cash cashDec
+}

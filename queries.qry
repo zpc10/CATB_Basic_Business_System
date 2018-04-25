@@ -1,0 +1,38 @@
+
+query selectOwner {
+  description: "Select all Owner"
+  statement:
+      SELECT org.decentralized.resource.network.Owner
+}
+
+query selectBanks {
+  description: "Select all banks"
+  statement:
+      SELECT org.decentralized.resource.network.Bank
+}
+
+query selectCompanies {
+  description: "Select all companies"
+  statement:
+      SELECT org.decentralized.resource.network.Company
+}
+
+query selectCoins {
+  description: "Select all coin assets"
+  statement:
+      SELECT org.decentralized.resource.network.Coins
+}
+
+query selectResource {
+  description: "Select all resource assets"
+  statement:
+      SELECT org.decentralized.resource.network.Resource
+}
+
+query selectCash {
+  description: "Select all cash assets"
+  statement:
+      SELECT org.decentralized.resource.network.Cash
+}
+
+

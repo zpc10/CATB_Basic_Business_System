@@ -1,0 +1,188 @@
+/**
+ * Access control rules for BBS
+ */
+
+
+//Owners to have access only to their own account
+rule OwnerAccessOwnRecord {
+    description: "Allow owners to access only their profile"
+    participant(p): "org.decentralized.resource.network.Owner"
+    operation: READ, UPDATE, DELETE
+    resource(r): "org.decentralized.resource.network.Owner"
+    condition: (r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+
+//Owners to have read only access to other Owners
+rule OwnerReadAccessOwners {
+    description: "Allow owners read access to other owners"
+    participant: "org.decentralized.resource.network.Owner"
+    operation: READ
+    resource: "org.decentralized.resource.network.Owner"
+    action: ALLOW
+}
+
+//Owners to have read only access to other Banks
+rule OwnerReadAccessBanks {
+    description: "Allow owners read access to other banks"
+    participant: "org.decentralized.resource.network.Owner"
+    operation: READ
+    resource: "org.decentralized.resource.network.Bank"
+    action: ALLOW
+}
+
+//Owners to have read only access to other Companies
+rule OwnerReadAccessCompanies {
+    description: "Allow owners read access to other companies"
+    participant: "org.decentralized.resource.network.Owner"
+    operation: READ
+    resource: "org.decentralized.resource.network.Company"
+    action: ALLOW
+}
+
+
+//Owners to have read access to all coins assets
+rule OwnerAccessCoinsRecord {
+    description: "Allow owners read access to all coins assets"
+    participant: "org.decentralized.resource.network.Owner"
+    operation: READ
+    resource: "org.decentralized.resource.network.Coins"
+    action: ALLOW
+}
+
+//Owners to have read access to all resource assets
+rule OwnerAccessResourceRecord {
+    description: "Allow owners read access to all resource assets"
+    participant: "org.decentralized.resource.network.Owner"
+    operation: READ
+    resource: "org.decentralized.resource.network.Resource"
+    action: ALLOW
+}
+
+//Owners to have read access to all cash assets
+rule OwnerAccessCashRecord {
+    description: "Allow owners read access to all cash assets"
+    participant: "org.decentralized.resource.network.Owner"
+    operation: READ
+    resource: "org.decentralized.resource.network.Cash"
+    action: ALLOW
+}
+
+
+//Banks to have access to their own account
+rule BankAccessOwnRecord {
+    description: "Allow banks to access only their profile"
+    participant(p): "org.decentralized.resource.network.Bank"
+    operation: READ, UPDATE, DELETE
+    resource(r): "org.decentralized.resource.network.Bank"
+    condition: (r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+//Banks to have read only access to other Banks
+rule BankReadAccessBanks {
+    description: "Allow banks read access to other Banks"
+    participant: "org.decentralized.resource.network.Bank"
+    operation: READ
+    resource: "org.decentralized.resource.network.Bank"
+    action: ALLOW
+}
+
+//Banks to have read only access to other Owners
+rule BankReadAccessOwners {
+    description: "Allow banks read access to other Owners"
+    participant: "org.decentralized.resource.network.Bank"
+    operation: READ
+    resource: "org.decentralized.resource.network.Owner"
+    action: ALLOW
+}
+
+//Banks to have read access to all coins assets
+rule BankAccessCoinsRecord {
+    description: "Allow banks read access to all coins assets"
+    participant: "org.decentralized.resource.network.Bank"
+    operation: READ
+    resource: "org.decentralized.resource.network.Coins"
+    action: ALLOW
+}
+
+//Banks to have read/update access to all cash assets
+rule BankAccessCashRecord {
+    description: "Allow banks read access to all cash assets"
+    participant: "org.decentralized.resource.network.Bank"
+    operation: READ
+    resource: "org.decentralized.resource.network.Cash"
+    action: ALLOW
+}
+
+
+//Companies to have access to their own account
+rule CompanyAccessOwnRecord {
+    description: "Allow company to access only their profile"
+    participant(p): "org.decentralized.resource.network.Company"
+    operation: READ, UPDATE, DELETE
+    resource(r): "org.decentralized.resource.network.Company"
+    condition: (r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+//Companies to have read only access to other Companies
+rule CompanyReadAccessCompanies {
+    description: "Allow companies read access to other Companies"
+    participant: "org.decentralized.resource.network.Company"
+    operation: READ
+    resource: "org.decentralized.resource.network.Company"
+    action: ALLOW
+}
+
+//Companies to have read only access to other Owners
+rule CompanyReadAccessOwners {
+    description: "Allow companies read access to other Owners"
+    participant: "org.decentralized.resource.network.Company"
+    operation: READ
+    resource: "org.decentralized.resource.network.Owner"
+    action: ALLOW
+}
+
+//Companies to have read access to all coins assets
+rule CompanyAccessCoinsRecord {
+    description: "Allow companies read access to all coins assets"
+    participant: "org.decentralized.resource.network.Company"
+    operation: READ
+    resource: "org.decentralized.resource.network.Coins"
+    action: ALLOW
+}
+
+//Companies to have read/update access to all resource assets
+rule CompanyAccessResourceRecord {
+    description: "Allow companies read access to all resource assets"
+    participant: "org.decentralized.resource.network.Company"
+    operation: READ
+    resource: "org.decentralized.resource.network.Resource"
+    action: ALLOW
+}
+
+rule SystemACL {
+  description:  "System ACL to permit all access"
+  participant: "org.hyperledger.composer.system.Participant"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}

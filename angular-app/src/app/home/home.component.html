@@ -1,0 +1,84 @@
+
+
+<div class="container">
+  <div class="row">  
+      <!--h1 class="heading">decentralized resource </h1--> 
+     <h1 class="heading">Welcome to Decentralized Resource using Hyperledger Composer</h1>
+  </div> 
+
+  <div class="row">
+    <br>
+  </div> 
+
+  <div class="row bodytext">      
+      <!--h3>Welcome to Decentralized Resource using Hyperledger Composer!</h3-->      
+      <div class="col-md-12">
+        <p class=""> This Blockchain application demonstrates resource sharing on a network among 'Owners' on a grid. The resource trade is based on exchanging coins for resource provided. The network also includes 'Companies' to trade excess resource with or obtain resource from, and 'Banks' to exchange cash (fiat money) for coins.  </p>
+        <p class=""> Find more detail <a [routerLink]="['/About']" > about the application. </a> </p>
+
+      </div>
+    </div> 
+
+  <div class="row">
+    <br>
+  </div> 
+
+  <div class="row">
+    <h4> Step1 - Create and Update Participants </h4>
+  </div> 
+    <!-- div class="col-md-9" -->
+    <div class="row">
+    <!-- /div -->
+    <div class="participant col-md-4">
+      <p> <strong>Owners</strong> own three assets: Resource, Coins and Cash. They can trade with fellow Owner, banks, and companies.</p>
+      <a [routerLink]="['/Owner']" class=participantButton>Owner</a> 
+    </div>      
+    
+    <div class="participant col-md-4">
+      <p> <strong>Banks</strong> on the network own two assets: Cash and Coins. They can trade with Owner, who can buy or sell coins for cash. </p>
+      <a [routerLink]="['/Bank']" class="participantButton">Banks</a>
+    </div>   
+
+    <div class="participant col-md-4">
+      <p> <strong>Companies</strong> own two assets: Resource and Coins. They can trade with Owner, who can buy or sell resource for coins. </p>
+      <a [routerLink]="['/Company']" class="participantButton">Companies</a>
+    </div> 
+  
+  </div> 
+
+  <div class="row">
+    <br>
+  </div> 
+
+
+  <div class="row">
+    <h4> Step2 - Execute Transactions </h4>
+  </div> 
+
+  <div class="row"> 
+        
+    <div class="participant col-md-4">
+      <p> Execute a transaction between Owner by exchanging Coins for Resource </p>
+      <a [routerLink]="['/TransactionRR']" class=participantButton>Owner to Owner</a> 
+    </div>           
+
+    <div class="participant col-md-4">
+      <p> Execute a transaction between a Owner and a Bank by exchanging Coins for Cash </p>
+      <a [routerLink]="['/TransactionRB']" class="participantButton">Owner to Bank</a>
+    </div> 
+    
+    <div class="participant col-md-4">
+      <p> Execute a transaction between a Owner and a Company by exchanging Coins for Resource </p>
+      <a [routerLink]="['/TransactionRU']" class="participantButton">Owner to Company</a>
+    </div>   
+    
+  </div> 
+
+  <div class="row">
+    <br>
+  </div> 
+  <div class="row">
+    <br>
+  </div> 
+
+</div>
