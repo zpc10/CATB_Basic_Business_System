@@ -1,9 +1,12 @@
 # 在执行过“Prerequisites.doc”之后进行以下操作：
 
-cnpm install -g composer-cli@0.16.0
-cnpm install -g generator-hyperledger-composer@0.16.0
-cnpm install -g composer-rest-server@0.16.0
-cnpm install -g yo
+1.cnpm install -g composer-cli@0.16.0
+
+2.cnpm install -g generator-hyperledger-composer@0.16.0
+
+3.cnpm install -g composer-rest-server@0.16.0
+
+4.cnpm install -g yo
 
 ## 下载样例：
 
